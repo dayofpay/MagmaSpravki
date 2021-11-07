@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace MagmaSpravki.Auth
     {
         public static void add(string username,int points)
         {
-            MySqlCommand updatePoint = new MySqlCommand("UPDATE staffmembers SET current_points = current_points + " + points, Database.DefaultBase.connection);
+            MySqlCommand updatePoint = new MySqlCommand("UPDATE staffmembers SET current_points = current_points + " + points + " WHERE user = '" + username + "'", Database.DefaultBase.connection);
             try
             {
                 if(points < 1)
@@ -45,7 +45,7 @@ namespace MagmaSpravki.Auth
         }
         public static void remove(string username, int points)
         {
-            MySqlCommand updatePoint = new MySqlCommand("UPDATE staffmembers SET current_points = current_points - " + points, Database.DefaultBase.connection);
+            MySqlCommand updatePoint = new MySqlCommand("UPDATE staffmembers SET current_points = current_points - " + points + " WHERE user = '" + username + "'", Database.DefaultBase.connection);
             try
             {
                 if (points < 1)
